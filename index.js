@@ -16,6 +16,9 @@ function getTurn() {
   return localStorage.getItem('turn');
 }
 
+const blah = await getSpreadsheet();
+alert(blah);
+
 $(document).ready(function() {
 	if (getTurn() == null) {
   	restartGame();
@@ -185,4 +188,12 @@ function updateScores() {
 
 function getPlayerScore(player) {
 	return parseInt(localStorage.getItem(player));
+}
+
+async function getSpreadsheet() {
+	await $.ajax({
+		url: 'https://anotepad.com/api/notes/id',
+		data: 'id: a6knd979',
+		success: (response) => { return JSON.parse(response.content)},
+	});
 }
