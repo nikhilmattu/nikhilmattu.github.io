@@ -62,8 +62,15 @@
 }
 
 
-.button:hover {
+#spinButton:hover {
   background-color: lightblue;
+  box-shadow: 0px 15px 20px lightgray;
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+#resetButton:hover {
+  background-color: red;
   box-shadow: 0px 15px 20px lightgray;
   color: #fff;
   transform: translateY(-1px);
