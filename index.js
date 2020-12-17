@@ -62,7 +62,7 @@ function spinningState() {
 }
 
 function spunState(spinResult) {
-	// Update spreadsheet
+  // Update spreadsheet
   updateSpreadsheet(spinResult);
 
   // Set display states
