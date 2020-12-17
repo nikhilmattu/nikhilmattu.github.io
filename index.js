@@ -1,0 +1,147 @@
+const localStorage = window.localStorage;
+
+const resultMap = {
+	1: 'shin',
+  2: 'hei',
+  3: 'gimel',
+  4: 'nun',
+}
+
+const hiddenClass = 'hidden';
+
+const players = ['Shweta', 'Nikhil', 'Joy', 'Shaanika', 'Adib', 'Janna', 'Kevin', 'Lynn', 'Shawn', 'Medha'];
+
+function getTurn() {
+	return localStorage.getItem('turn');
+}
+
+$(document).ready(function() {
+	if (getTurn() == null) {
+  	restartGame();
+  }
+	populateTurn();
+  updateScores();
+  
+  $('#resetButton').click(function() {
+  	restartGame();
+  });
+
+	$('#spinButton').click(function() {
+    disableButton(true);
+    
+  	spinTime = Math.ceil(Math.random() * 3000 + 2000);
+    spinResult = resultMap[Math.ceil(Math.random() * 4)];
+    
+    // go to spinning state
+    spinningState();
+    
+    // in some seconds, go to spin state
+    window.setTimeout(() => {
+    	spunState(spinResult);
+      disableButton(false);
+    }, spinTime);
+  });
+});
+
+function disableButton(disabledState) {
+	$('#spinButton').prop("disabled", disabledState);
+}
+
+function spinningState() {
+ // Set display states
+ $('#marqueeTitle').removeClass(hiddenClass);
+ $('<iframe class="hidden" width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/926563318&color=%23ff5500&auto_play=true&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>')
+     .appendTo('.scrollable');
+  $('#pageTitle').addClass(hiddenClass);
+     
+ $('#steadyState').addClass(hiddenClass);
+ $('#spinningState').removeClass(hiddenClass);
+ $('#spunState').addClass(hiddenClass);
+ 
+ 
+}
+
+function spunState(spinResult) {
+	// Update spreadsheet
+  updateSpreadsheet(spinResult);
+
+  // Set display states
+  $('#result').removeClass().addClass(spinResult);
+  $('#steadyState').addClass(hiddenClass);
+ 
+ $('#spinningState').addClass(hiddenClass);
+  $('#spunState').removeClass(hiddenClass);
+  $('#marqueeTitle').addClass(hiddenClass);
+  $('#pageTitle').removeClass(hiddenClass);
+  setTimeout(() => {
+  	$('.scrollable').children().last().remove();
+  }, 20000)
+
+	return Promise.resolve();
+}
+
+function populateTurn() {
+  const turn = getTurn();
+	$('#turn').html("Now it's " + turn + "'s turn!");
+}
+
+function restartGame() {
+	players.forEach(player => localStorage.setItem(player, 4));
+  localStorage.setItem('center', 1);
+  localStorage.setItem('turn', players[0]);
+  populateTurn();
+  updateScores();
+}
+
+function updateSpreadsheet(spinResult) {
+  const playerPoints = parseInt(localStorage.getItem(getTurn()));
+  const centerPoints = parseInt(localStorage.getItem('center'));
+  
+  switch(spinResult) {
+    case 'shin':
+      // Player adds to pot
+      if (playerPoints > 0) {
+      	localStorage.setItem(getTurn(), playerPoints - 1);
+      	localStorage.setItem('center', centerPoints + 1);
+      }
+      break;
+    case 'hei':
+      // Player gets half of what's in the center
+      const halfCenter = Math.ceil(centerPoints / 2);
+      localStorage.setItem(getTurn(), playerPoints + halfCenter);
+      localStorage.setItem('center', centerPoints - halfCenter);
+      break;
+    case 'gimel':
+      // Player gets all of the center pot
+      localStorage.setItem(getTurn(), playerPoints + centerPoints);
+      localStorage.setItem('center', 0);
+      break;
+    case 'nun':
+      // Nothing happens
+      break;
+    default:
+      // why tho. 
+  }
+  
+  // If pot is near empty, everyone's gotta put one coin in
+  if (parseInt(localStorage.getItem('center')) <= 1) {
+  	players.forEach(player => {
+    	
+    });
+  }
+  
+  // Next person's turn
+  const playerIndex = players.indexOf(getTurn());
+  localStorage.setItem('turn', playerIndex + 1 >= players.length ? players[0] : players[playerIndex + 1]);
+  
+  updateScores();
+  populateTurn();
+}
+
+function updateScores() {
+	let str = '<tr id="centerRow"><td>CENTER</td><td>' + localStorage.getItem('center') + '</td></tr>';
+  players.forEach(player => {
+  	str += '<tr><td>' + player + '</td><td class="score">' + localStorage.getItem(player) + '</td></tr>';
+  });
+	$('#scoreTable').html(str);
+}
