@@ -1,0 +1,148 @@
+.hidden {
+  display: none;
+}
+
+#centerRow {
+  font-weight: bold;
+}
+
+#result {
+  object-fit: cover;
+  width: 150px;
+  height: 300px;
+}
+
+#result.shin {
+  object-position: 0% 0;
+}
+
+#result.hei {
+  object-position: 35% 0;
+}
+
+#result.gimel {
+  object-position: 70% 0;
+}
+
+#result.nun {
+  object-position: 100% 0;
+}
+
+#buttonContainer {
+	display: flex;
+  flex-direction: column;
+}
+
+.button {
+ font-family: 'Roboto', sans-serif;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  font-weight: 500;
+  color: #000;
+  border: none;
+  border-radius: 45px;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+  outline: none;
+  margin-bottom: 16px;
+}
+
+#spinButton {
+  width: 140px;
+  height: 45px;
+  background-color: #fff;
+}
+
+#resetButton {
+  width: 140px;
+  height: 45px;
+  background-color: #bfbfbf
+}
+
+
+.button:hover {
+  background-color: lightblue;
+  box-shadow: 0px 15px 20px lightgray;
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+.scrollable {
+  height: 12px;
+  overflow: hidden;
+  position: relative;
+  width: 25%;
+}
+
+.marquee {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  line-height: 12px;
+  text-align: center;
+  /* Starting position */
+  -moz-transform:translateX(100%);
+  -webkit-transform:translateX(100%); 
+  transform:translateX(100%);
+  /* Apply animation to this element */ 
+  -moz-animation: scroll-left 3s linear infinite;
+  -webkit-animation: scroll-left 3s linear infinite;
+  animation: scroll-left 3s linear infinite;
+  }
+  /* Move it (define the animation) */
+  @-moz-keyframes scroll-left {
+  0% { -moz-transform: translateX(100%); }
+  100% { -moz-transform: translateX(-100%); }
+  }
+  @-webkit-keyframes scroll-left {
+  0% { -webkit-transform: translateX(100%); }
+  100% { -webkit-transform: translateX(-100%); }
+  }
+  @keyframes scroll-left {
+  0% { 
+  -moz-transform: translateX(100%); /* Browser bug fix */
+  -webkit-transform: translateX(100%); /* Browser bug fix */
+  transform: translateX(100%); 
+  }
+  100% { 
+  -moz-transform: translateX(-100%); /* Browser bug fix */
+  -webkit-transform: translateX(-100%); /* Browser bug fix */
+  transform: translateX(-100%); 
+  }
+}
+
+.table {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    text-align: center;
+}
+
+.table tr {
+    background-color: #f7f7f7;
+    color: black;
+    text-align: left;
+}
+
+.table th,
+.table td {
+    padding: 12px 15px;
+}
+
+.table tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+.table tr:last-of-type {
+    border-bottom: 2px solid #009879;
+}
+
+.score {
+	background-color: #4287f5;
+}
