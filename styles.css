@@ -65,7 +65,7 @@
 .spinButton:hover {
   background-color: lightblue;
   box-shadow: 0px 15px 20px lightgray;
-  color: #fff;
+  color: black;
   transform: translateY(-1px);
 }
 
