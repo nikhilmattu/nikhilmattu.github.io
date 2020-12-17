@@ -1,7 +1,41 @@
 <!DOCTYPE html>
 <html>
 <body>
-<h1>Hello World</h1>
-<p>I'm hosted with GitHub Pages.</p>
+  <div id="header">
+  	<p id="pageTitle" class="hidden">
+			HUZZAH!
+    </p>
+    <div class="scrollable">
+      <p id="marqueeTitle" class="marquee hidden">
+        dreidel dreidel dreidel dreidel dreidel dreidel
+      </p>
+    </div>
+  </div>
+  <div id="content">
+    <div id="gameBoard">
+      <div id="turn">
+      
+      </div>
+      <div id="dreidel">
+        <div id="steadyState">
+          <img src="https://img.icons8.com/plasticine/2x/dreidel.png" />
+        </div>
+        <div id="spinningState" class="hidden">
+          <img src="https://media.giphy.com/media/3oxHQyvrTEfO1TLQCA/giphy.gif" />
+        </div>
+        <div id="spunState" class="hidden">
+          <img id="result" src="https://spinadreidel.com/images/Dreidel-symbols-and-sides.png" />
+        </div>
+      </div>
+      <div id="buttonContainer">
+        <button id="spinButton" class="button" type="button">Spin! 🤪</button>
+      	<button id="resetButton" class="button" type="button">Restart! 🤯</button>
+			</div>
+    </div>
+    <div id="scoreBoard">
+      <table id="scoreTable" class="table">
+      </table>
+    </div>
+  </div>
 </body>
 </html>
