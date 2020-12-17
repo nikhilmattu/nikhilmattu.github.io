@@ -83,7 +83,7 @@ function spunState(spinResult) {
 
 function populateTurn(opt_updates) {
   const turn = getTurn();
-	$('#turn').html((opt_updates ? opt_updates : '') + ".<br/>Now, it's <b>" + turn + "</b>'s turn!");
+	$('#turn').html((opt_updates ? opt_updates + '.<br/>' : '') + "Now, it's <b>" + turn + "</b>'s turn!");
 }
 
 function restartGame() {
