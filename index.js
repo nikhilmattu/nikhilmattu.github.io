@@ -154,7 +154,7 @@ function updateSpreadsheet(spinResult) {
 			nextPlayer = players[i];
 			break;
 		}
-		i++;
+		i = playerIndex < players.length - 1 ? playerIndex + 1 : 0;
 	}
 
 	// see if game is over
