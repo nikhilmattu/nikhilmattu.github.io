@@ -119,7 +119,7 @@ function updateSpreadsheet(spinResult) {
       // Player gets all of the center pot
       localStorage.setItem(getTurn(), playerPoints + centerPoints);
       localStorage.setItem('center', 0);
-			updatesStr = (getTurn() + ' got all ' + centerPoits + ' from the center 🤑🤑🤑');
+			updatesStr = (getTurn() + ' got all ' + centerPoints + ' from the center 🤑🤑🤑');
       break;
     case 'nun':
       updatesStr = ("Nothing happened (that means you're boring, " + getTurn() + ')');
