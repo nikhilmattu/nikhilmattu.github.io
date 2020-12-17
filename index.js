@@ -1,5 +1,8 @@
 const localStorage = window.localStorage;
 
+const players = ['Shweta', 'Nikhil', 'Joy', 'Shaanika', 'Adib', 'Janna', 'Kevin', 'Lynn', 'Shawn', 'Medha'];
+const startingCoins = 4;
+
 const resultMap = {
 	1: 'shin',
   2: 'hei',
@@ -9,10 +12,8 @@ const resultMap = {
 
 const hiddenClass = 'hidden';
 
-const players = ['Shweta', 'Nikhil', 'Joy', 'Shaanika', 'Adib', 'Janna', 'Kevin', 'Lynn', 'Shawn', 'Medha'];
-
 function getTurn() {
-	return localStorage.getItem('turn');
+  return localStorage.getItem('turn');
 }
 
 $(document).ready(function() {
@@ -86,7 +87,7 @@ function populateTurn() {
 }
 
 function restartGame() {
-	players.forEach(player => localStorage.setItem(player, 4));
+	players.forEach(player => localStorage.setItem(player, startingCoins));
   localStorage.setItem('center', 1);
   localStorage.setItem('turn', players[0]);
   populateTurn();
@@ -124,24 +125,60 @@ function updateSpreadsheet(spinResult) {
   }
   
   // If pot is near empty, everyone's gotta put one coin in
-  if (parseInt(localStorage.getItem('center')) <= 1) {
+	const pointsInCenter = getPlayerScore('center'));
+  if (parseInt(pointsInCenter <= 1) {
+		let pointsToAddToCenter = 0;
   	players.forEach(player => {
-    	
+    	const playerPoints = getPlayerScore(player);
+			if (playerPoints > 0) {
+				localStorage.setItem(player, playerPoints - 1);
+				pointsToAddToCenter++;
+			}
+			localStorage.setItem('center', pointsInCenter + pointsToAddToCenter);
     });
   }
   
   // Next person's turn
   const playerIndex = players.indexOf(getTurn());
-  localStorage.setItem('turn', playerIndex + 1 >= players.length ? players[0] : players[playerIndex + 1]);
+  let nextPlayer = null;
+	let i = playerIndex < players.length - 1 ? playerIndex++ : 0;
+  while (i != playerIndex) {
+		if (getPlayerScore(player) > 0) {
+			nextPlayer = players[i];
+			break;
+		}
+		i++;
+	}
+
+	// see if game is over
+	let numPeopleWithCoins = 0;
+	let potentialWinner = null;
+	players.forEach(player => {
+		if (getPlayerScore(player) > 0) {
+			numPeopleWithCoins++;
+			potentialWinner = player;
+		}
+	});
+	if (numPeopleWithCoins === 1) {
+		alert(potentialWinner + ' wins with a score of ' + getPlayerScore(potentialWinner) + '! Woohoo!');
+		restartGame();
+		return;
+	}
+
+  localStorage.setItem('turn', nextPlayer);
   
   updateScores();
   populateTurn();
 }
 
 function updateScores() {
-	let str = '<tr id="centerRow"><td>CENTER</td><td>' + localStorage.getItem('center') + '</td></tr>';
+	let str = '<tr id="centerRow"><td>CENTER</td><td>' + getPlayerScore('center') + '</td></tr>';
   players.forEach(player => {
-  	str += '<tr><td>' + player + '</td><td class="score">' + localStorage.getItem(player) + '</td></tr>';
+  	str += '<tr><td>' + player + '</td><td class="score">' + getPlayerScore(player) + '</td></tr>';
   });
 	$('#scoreTable').html(str);
+}
+
+function getPlayerScore(player) {
+	return parseInt(localStorage.getItem(player));
 }
