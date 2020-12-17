@@ -16,10 +16,10 @@ function getTurn() {
   return localStorage.getItem('turn');
 }
 
-const blah = await getSpreadsheet();
+$(document).ready(async function() {
+	const blah = await getSpreadsheet();
 alert(blah);
-
-$(document).ready(function() {
+	
 	if (getTurn() == null) {
   	restartGame();
   }
