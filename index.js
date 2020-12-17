@@ -81,9 +81,9 @@ function spunState(spinResult) {
 	return Promise.resolve();
 }
 
-function populateTurn() {
+function populateTurn(opt_updates) {
   const turn = getTurn();
-	$('#turn').html("Now it's " + turn + "'s turn!");
+	$('#turn').html(opt_updates + '.' + '<br/>' "Now, it's <b?" + turn + "</b>'s turn!");
 }
 
 function restartGame() {
@@ -95,8 +95,9 @@ function restartGame() {
 }
 
 function updateSpreadsheet(spinResult) {
-  const playerPoints = parseInt(localStorage.getItem(getTurn()));
-  const centerPoints = parseInt(localStorage.getItem('center'));
+	let updatesStr = '';
+  const playerPoints = getPlayerScore(getTurn());
+  const centerPoints = getPlayerScore('center');
   
   switch(spinResult) {
     case 'shin':
@@ -104,6 +105,7 @@ function updateSpreadsheet(spinResult) {
       if (playerPoints > 0) {
       	localStorage.setItem(getTurn(), playerPoints - 1);
       	localStorage.setItem('center', centerPoints + 1);
+				updatesStr = (getTurn() + ' put 1 into the center');
       }
       break;
     case 'hei':
@@ -111,14 +113,16 @@ function updateSpreadsheet(spinResult) {
       const halfCenter = Math.ceil(centerPoints / 2);
       localStorage.setItem(getTurn(), playerPoints + halfCenter);
       localStorage.setItem('center', centerPoints - halfCenter);
+			updatesStr = (getTurn() + ' got ' + halfCenter + ' from the center');
       break;
     case 'gimel':
       // Player gets all of the center pot
       localStorage.setItem(getTurn(), playerPoints + centerPoints);
       localStorage.setItem('center', 0);
+			updatesStr = (getTurn() + ' got all ' + centerPoits + ' from the center 🤑🤑🤑');
       break;
     case 'nun':
-      // Nothing happens
+      updatesStr = ("Nothing happened (that means you're boring, " + getTurn() + ')');
       break;
     default:
       // why tho. 
@@ -160,7 +164,7 @@ function updateSpreadsheet(spinResult) {
 		}
 	});
 	if (numPeopleWithCoins === 1) {
-		alert(potentialWinner + ' wins with a score of ' + getPlayerScore(potentialWinner) + '! Woohoo!');
+		alert(potentialWinner + ' wins with a total of ' + getPlayerScore(potentialWinner) + '! Woohoo!');
 		restartGame();
 		return;
 	}
@@ -168,7 +172,7 @@ function updateSpreadsheet(spinResult) {
   localStorage.setItem('turn', nextPlayer);
   
   updateScores();
-  populateTurn();
+  populateTurn(updatesStr);
 }
 
 function updateScores() {
