@@ -130,7 +130,7 @@ function updateSpreadsheet(spinResult) {
   
   // If pot is near empty, everyone's gotta put one coin in
 	const pointsInCenter = getPlayerScore('center');
-  if (parseInt(pointsInCenter <= 1) {
+  if (pointsInCenter <= 1) {
 		let pointsToAddToCenter = 0;
   	players.forEach(player => {
     	const playerPoints = getPlayerScore(player);
