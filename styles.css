@@ -186,3 +186,8 @@ body {
 .score {
 	background-color: #4287f5;
 }
+
+.buttonContainer {
+	display: flex;
+	justify-content: space-between;
+}
