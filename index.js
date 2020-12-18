@@ -149,13 +149,13 @@ function updateSpreadsheet(spinResult) {
   // Next person's turn
   const playerIndex = players.indexOf(getTurn());
   let nextPlayer = null;
-	let i = playerIndex < players.length - 1 ? playerIndex + 1 : 0;
+	let i = (playerIndex + 1) % (players.length);
   while (i != playerIndex) {
 		if (getPlayerScore(getTurn()) > 0) {
 			nextPlayer = players[i];
 			break;
 		}
-		i = i < players.length - 1 ? i + 1 : 0;
+		i = (i + 1) % (players.length);
 	}
 
 	// see if game is over
