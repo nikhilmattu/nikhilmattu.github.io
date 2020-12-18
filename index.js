@@ -16,10 +16,7 @@ function getTurn() {
   return localStorage.getItem('turn');
 }
 
-$(document).ready(async function() {
-	const blah = await getSpreadsheet();
-alert(blah);
-	
+$(document).ready(function() {
 	if (getTurn() == null) {
   	restartGame();
   }
@@ -188,14 +185,4 @@ function updateScores() {
 
 function getPlayerScore(player) {
 	return parseInt(localStorage.getItem(player));
-}
-
-async function getSpreadsheet() {
-	
-	await $.get({
-		url: 'https://anotepad.com/api/notes/a6knd979',
-		crossDomain:true,
-		dataType: 'jsonp',
-		success: (response) => { return JSON.parse(response.content)},
-	});
 }
