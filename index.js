@@ -202,14 +202,14 @@ async function autoplay() {
 	while (!isGameOver()) {
 		// go to spinning state
 		spinningState();
-		async wait(1000);
+		await wait(1000);
 		spunState(spinResult);
-		async wait(1000);
+		await wait(1000);
 	}
 	
 	disableButton(false);
 	
-	async wait (3000);
+	await wait (3000);
 	alert(potentialWinner + ' wins with a total of ' + getPlayerScore(potentialWinner) + '! Congrats you lazy lazeball.');
 }
 
