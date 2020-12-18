@@ -2,6 +2,20 @@
   display: none;
 }
 
+#content {
+	display: flex;
+	margin: 25px 150px;
+}
+
+#scoreBoard {
+	margin-left: auto;
+}
+
+#gameBoard {
+	margin-left: auto;
+  margin-right: auto;
+}
+
 #centerRow {
   font-weight: bold;
 }
