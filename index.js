@@ -191,9 +191,11 @@ function getPlayerScore(player) {
 }
 
 async function getSpreadsheet() {
+	
 	await $.get({
 		url: 'https://anotepad.com/api/notes/id',
 		data: 'id: a6knd979',
+		dataType: 'jsonp',
 		success: (response) => { return JSON.parse(response.content)},
 	});
 }
