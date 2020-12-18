@@ -202,6 +202,7 @@ async function autoplay() {
 	while (!isGameOver()) {
 		// go to spinning state
 		spinningState();
+		spinResult = resultMap[Math.ceil(Math.random() * 4)];
 		await wait(1000);
 		spunState(spinResult);
 		await wait(1000);
