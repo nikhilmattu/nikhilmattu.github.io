@@ -151,7 +151,7 @@ function updateSpreadsheet(spinResult) {
   let nextPlayer = null;
 	let i = (playerIndex + 1) % (players.length);
   while (i != playerIndex) {
-		if (getPlayerScore(getTurn()) > 0) {
+		if (getPlayerScore(players[i]) > 0) {
 			nextPlayer = players[i];
 			break;
 		}
