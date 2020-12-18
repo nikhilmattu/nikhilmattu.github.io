@@ -28,25 +28,25 @@ body {
 }
 
 #result {
-  object-fit: cover;
-  width: 150px;
-  height: 300px;
+  width: 126px;
+    height: 296px;
+    margin-bottom: 8px;
 }
 
 #result.shin {
-  object-position: 0% 0;
+	background: url(https://i.imgur.com/YyIihu8.png);
 }
 
 #result.hei {
-  object-position: 35% 0;
+	background: url(https://i.imgur.com/v6kDiaL.png);
 }
 
 #result.gimel {
-  object-position: 70% 0;
+	background: url(https://i.imgur.com/jkyeFyf.png);
 }
 
 #result.nun {
-  object-position: 100% 0;
+	background: url(https://i.imgur.com/N2B1h0Q.png);
 }
 
 #buttonContainer {
