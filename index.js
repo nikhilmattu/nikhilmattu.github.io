@@ -26,6 +26,10 @@ $(document).ready(function() {
   $('#resetButton').click(function() {
   	restartGame();
   });
+	
+	$('#autoplayButton').click(function() {
+		autoplay();
+	});
 
 	$('#spinButton').click(function() {
     disableButton(true);
@@ -155,15 +159,7 @@ function updateSpreadsheet(spinResult) {
 	}
 
 	// see if game is over
-	let numPeopleWithCoins = 0;
-	let potentialWinner = null;
-	players.forEach(player => {
-		if (getPlayerScore(player) > 0) {
-			numPeopleWithCoins++;
-			potentialWinner = player;
-		}
-	});
-	if (numPeopleWithCoins === 1) {
+	if (isGameOver()) {
 		alert(potentialWinner + ' wins with a total of ' + getPlayerScore(potentialWinner) + '! Woohoo!');
 		restartGame();
 		return;
@@ -173,6 +169,19 @@ function updateSpreadsheet(spinResult) {
   
   updateScores();
   populateTurn(updatesStr);
+}
+
+function isGameOver() {
+	let numPeopleWithCoins = 0;
+	let potentialWinner = null;
+	players.forEach(player => {
+		if (getPlayerScore(player) > 0) {
+			numPeopleWithCoins++;
+			potentialWinner = player;
+		}
+	});
+	
+	return numPeopleWithCoins === 1;
 }
 
 function updateScores() {
@@ -185,4 +194,27 @@ function updateScores() {
 
 function getPlayerScore(player) {
 	return parseInt(localStorage.getItem(player));
+}
+
+async function autoplay() {
+	disableButton(true);
+
+	while (!isGameOver()) {
+		// go to spinning state
+		spinningState();
+		async wait(1000);
+		spunState(spinResult);
+		async wait(1000);
+	}
+	
+	disableButton(false);
+	
+	async wait (3000);
+	alert(potentialWinner + ' wins with a total of ' + getPlayerScore(potentialWinner) + '! Congrats you lazy lazeball.');
+}
+
+async function wait(ms) {
+  return new Promise(resolve => {
+    setTimeout(resolve, ms);
+  });
 }
