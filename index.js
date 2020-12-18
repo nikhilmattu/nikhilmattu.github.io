@@ -195,7 +195,7 @@ async function getSpreadsheet() {
 	await $.get({
 		url: 'https://anotepad.com/api/notes/a6knd979',
 		crossDomain:true,
-		dataType: 'jsonp'
+		dataType: 'jsonp',
 		success: (response) => { return JSON.parse(response.content)},
 	});
 }
