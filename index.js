@@ -56,9 +56,7 @@ function spinningState() {
  // Set display states
  $('#marqueeTitle').removeClass(hiddenClass);
  $('<iframe class="hidden" width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/926563318&color=%23ff5500&auto_play=true&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>')
-     .appendTo('.scrollable');
-  $('#pageTitle').addClass(hiddenClass);
-     
+     .appendTo('.scrollable');     
  $('#steadyState').addClass(hiddenClass);
  $('#spinningState').removeClass(hiddenClass);
  $('#spunState').addClass(hiddenClass);
@@ -77,7 +75,6 @@ function spunState(spinResult) {
  $('#spinningState').addClass(hiddenClass);
   $('#spunState').removeClass(hiddenClass);
   $('#marqueeTitle').addClass(hiddenClass);
-  $('#pageTitle').removeClass(hiddenClass);
   setTimeout(() => {
   	$('.scrollable').children().last().remove();
   }, 20000)
