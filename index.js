@@ -90,7 +90,7 @@ function populateTurn(opt_updates) {
 function restartGame() {
 	players.forEach(player => localStorage.setItem(player, startingCoins));
   localStorage.setItem('center', players.length);
-  localStorage.setItem('turn', players[Math.floor(Math.rand() * players.length - 1)]);
+  localStorage.setItem('turn', players[Math.floor(Math.random() * players.length - 1)]);
   populateTurn();
   updateScores();
 }
