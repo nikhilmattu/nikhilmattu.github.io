@@ -85,6 +85,15 @@ body {
 	display: block;
 }
 
+.autoplayButton {
+  width: 90px;
+	height: 32px;
+	background-color: #bfbfbf;
+	margin-left: auto;
+	margin-top: auto;
+	display: block;
+}
+
 
 .spinButton:enabled:hover {
   background-color: lightblue;
