@@ -8,7 +8,7 @@ body {
   display: none;
 }
 
-$turn {
+#turn {
 	font-family: fantasy;
 	font-size: 20px;
 	text-align: center;
