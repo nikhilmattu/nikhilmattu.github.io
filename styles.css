@@ -199,6 +199,8 @@ body {
 
 #dreidel {
   min-width: 400px;
+  height: 296px;
+	margin: 30px 0;
 }
 
 #spunState {
