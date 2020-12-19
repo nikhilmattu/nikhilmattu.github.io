@@ -79,7 +79,8 @@ body {
   width: 170px;
 	height: 67px;
 	background-color: #fff;
-	font-size: 22px;
+  font-size: 22px;
+  margin: 0 auto;
 }
 
 .resetButton {
@@ -194,4 +195,30 @@ body {
 .buttonContainer {
 	display: flex;
 	justify-content: space-between;
+}
+
+#dreidel {
+  min-width: 400px;
+}
+
+#spunState {
+  margin: 0 auto;
+}
+
+#result {
+  margin: 0 auto;
+}
+
+#steady {
+  background: url(https://img.icons8.com/plasticine/2x/dreidel.png);
+  height: 200px;
+  width: 200px;
+  margin: 0 auto;
+}
+
+#spinning {
+  background: url(https://media.giphy.com/media/3oxHQyvrTEfO1TLQCA/giphy.gif);
+  height: 300px;
+  width: 300px;
+  margin: 0 auto;
 }
