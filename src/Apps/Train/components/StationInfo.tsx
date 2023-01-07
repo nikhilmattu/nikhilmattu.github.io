@@ -35,7 +35,7 @@ const StationInfo: React.FC<Props> = ({ id }) => {
         },
       })
         .then((resp) => {
-          console.log(resp.body);
+          console.log(resp);
           resp.json().then((train) => {
             console.log(train);
           });
