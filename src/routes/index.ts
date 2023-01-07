@@ -1,5 +1,6 @@
-import ErrorPage from "./ErrorPage";
-import ExperienceTimeline from "./ExperienceTimeline/ExperienceTimeline";
-import Home from "./Home";
+import ErrorPage from "./ErrorPage/ErrorPage";
+import ExperiencePage from "./ExperiencePage/ExperiencePage";
+import HomePage from "./HomePage/HomePage";
+import AppsPage from "./AppsPage/AppsPage"
 
-export { ExperienceTimeline, Home, ErrorPage };
+export { ExperiencePage, HomePage, ErrorPage, AppsPage };

@@ -1,20 +1,16 @@
-import React from "react";
+import React from "react"
 import NavBar from "../NavBar/NavBar";
+import {PageWrapper} from './styles'
 
 type Props = {
-  children?: JSX.Element;
-};
+    children?: JSX.Element
+}
 
-const Page: React.FC<Props> = ({ children }) => {
-  // const location = useLocation();
-  // console.log(location)
+const Page: React.FC<Props> = ({children}) => {
+    return <PageWrapper>
+        <NavBar />
+        {children}
+    </PageWrapper>
+}
 
-  return (
-    <div className="Page">
-      <NavBar />
-      {children}
-    </div>
-  );
-};
-
-export default Page;
+export default Page

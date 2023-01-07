@@ -8,6 +8,9 @@ interface NavProps {
 export const NavBarWrapper = styled.div`
   display: flex;
   justify-content: center;
+  align-items: flex-start;
+  align-self: flex-start;
+  padding: 4px;
 `;
 
 export const StyledLink = styled(NavLink)<NavProps>`
@@ -17,3 +20,12 @@ export const StyledLink = styled(NavLink)<NavProps>`
   text-decoration: none;
   border-bottom: ${(props) => (props.isActive ? `1px solid black` : `none`)};
 `;
+
+export const NavButton = styled.button`
+  font-size: 32px;
+  background: none;
+  outline: none;
+  border: 1px solid gray;
+  border-radius: 8px;
+  cursor: pointer;
+`

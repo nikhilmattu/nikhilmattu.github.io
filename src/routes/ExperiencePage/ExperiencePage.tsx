@@ -3,14 +3,12 @@ import { ExperienceImage, ScrollableImage } from "./styles";
 
 type Props = {};
 
-const ExperienceTimeline: React.FC<Props> = () => {
+const ExperiencePage: React.FC<Props> = () => {
   return (
     <div>
-      <ScrollableImage>
         <ExperienceImage src="https://i.imgur.com/sXrAjDK.png" />
-      </ScrollableImage>
     </div>
   );
 };
 
-export default ExperienceTimeline;
+export default ExperiencePage;
