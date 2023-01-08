@@ -1,5 +1,5 @@
 import React from "react";
-import { ExperienceImage, ScrollableImage } from "./styles";
+import { ExperienceImage } from "./styles";
 
 type Props = {};
 

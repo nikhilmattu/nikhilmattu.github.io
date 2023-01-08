@@ -7,19 +7,6 @@ type Props = {
 
 const reqURL = `https://api-endpoint.mta.info/Dataservice/mtagtfsfeeds/nyct%2Fgtfs-ace`;
 
-const HEADERS = {
-  "x-api-key": `hnC289tRfc5SWA02qSwxs3ALv4tBPXXr4CQ8Ogzl`,
-};
-
-var requestSettings = {
-  method: "GET",
-  url: reqURL,
-  encoding: null,
-  headers: {
-    ...HEADERS,
-  },
-};
-
 const StationInfo: React.FC<Props> = ({ id }) => {
   decoder();
   useEffect(() => {

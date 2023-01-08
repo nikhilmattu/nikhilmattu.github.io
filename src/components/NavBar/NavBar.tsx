@@ -1,6 +1,6 @@
 import React from "react";
 import { useLocation } from "react-router";
-import { NavBarWrapper, StyledLink, NavButton } from "./styles";
+import { NavBarWrapper, StyledLink } from "./styles";
 
 type Props = {};
 

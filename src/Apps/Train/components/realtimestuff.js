@@ -24,7 +24,7 @@ export const decoder = async () => {
       const error = new Error(`${response.url}: ${response.status} ${response.statusText}`);
       error.response = response;
       throw error;
-      process.exit(1);
+    //   process.exit(1);
     }
     const buffer = await response.arrayBuffer();
     const feed = GtfsRealtimeBindings.transit_realtime.FeedMessage.decode(

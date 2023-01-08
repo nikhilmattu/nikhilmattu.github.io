@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import StationInfo from "./components/StationInfo";
+// import StationInfo from "./components/StationInfo";
 import { StationsListWrapper, TrainWrapper } from "./components/styles";
 
 type Props = {};
