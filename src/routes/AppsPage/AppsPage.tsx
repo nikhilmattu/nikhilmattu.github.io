@@ -1,5 +1,5 @@
 import React from "react";
-import ToDo from "../../Apps/ToDo/ToDo";
+import Reminders from "../../Apps/Reminders/Reminders";
 import Train from "../../Apps/Train/Train";
 
 type Props = {};
@@ -7,12 +7,12 @@ type Props = {};
 const APP_NAMES: Record<string, string> = {
   NONE: "NONE",
   TRAIN: "TRAIN",
-  TODO: "TODO",
+  REMINDERS: "REMINDERS",
 };
 
 const APPS: Record<string, string> = {
   TRAIN: "Where is the train?",
-  TODO: "ToDo List",
+  REMINDERS: "Reminders",
 };
 
 const AppsPage: React.FC<Props> = () => {
@@ -22,8 +22,8 @@ const AppsPage: React.FC<Props> = () => {
     switch (currentApp) {
       case APP_NAMES.TRAIN:
         return <Train />;
-      case APP_NAMES.TODO:
-        return <ToDo />;
+      case APP_NAMES.REMINDERS:
+        return <Reminders />;
     }
   };
 

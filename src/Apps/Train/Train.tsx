@@ -81,7 +81,7 @@ const Train: React.FC<Props> = () => {
   };
   return (
     <div>
-      <div>When is the next train?</div>
+      <div>Where is the closest train?</div>
       <button
         onClick={() => {
           // make sure we don't go past the max num of stations
@@ -93,7 +93,7 @@ const Train: React.FC<Props> = () => {
       </button>
       <TrainWrapper>
         <StationsListWrapper>{stationElements()}</StationsListWrapper>
-        <StationInfo id={selectedStation} />
+        {/* <StationInfo id={selectedStation} /> */}
       </TrainWrapper>
     </div>
   );

@@ -1,48 +1,36 @@
 import React, { useEffect } from "react";
-// const https = require("https");
-// https.get(
-//   "<Feed URI>",
-//   { headers: { "x-api-key": '<Api Key>'}
-//   },
-//   (resp) => {
-//     resp.on('data', (chunk) => {
-//       console.log("Receiving Data");
-//     });
-//     resp.on('end', () => {
-//       console.log("Finished receiving data");
-//     });
-//   }).on("error", (err) => {
-//     console.log("Error: " + err.message);
-//   });
+import { decoder } from "./realtimestuff";
 
 type Props = {
   id: string;
 };
 
-// https://api-endpoint.mta.info/Dataservice/mtagtfsfeeds/nyct%2Fgtfs-ace
-const reqURL = `https://api.wheresthefuckingtrain.com/by-id/82bd`;
+const reqURL = `https://api-endpoint.mta.info/Dataservice/mtagtfsfeeds/nyct%2Fgtfs-ace`;
+
 const HEADERS = {
   "x-api-key": `hnC289tRfc5SWA02qSwxs3ALv4tBPXXr4CQ8Ogzl`,
-  MTA_KEY: `hnC289tRfc5SWA02qSwxs3ALv4tBPXXr4CQ8Ogzl`,
 };
+
+var requestSettings = {
+  method: "GET",
+  url: reqURL,
+  encoding: null,
+  headers: {
+    ...HEADERS,
+  },
+};
+
 const StationInfo: React.FC<Props> = ({ id }) => {
+  decoder();
   useEffect(() => {
     if (id) {
+      // request(requestSettings, function (error: any, response: any, body: any) {
+      // if (!error && response.statusCode == 200) {
       fetch(reqURL, {
-        mode: "no-cors",
         headers: {
-          ...HEADERS,
+          "x-api-key": `hnC289tRfc5SWA02qSwxs3ALv4tBPXXr4CQ8Ogzl`,
         },
-      })
-        .then((resp) => {
-          console.log(resp);
-          resp.json().then((train) => {
-            console.log(train);
-          });
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+      }).then((resp) => {});
     }
   }, [id]);
   return <div>station: {id}</div>;
