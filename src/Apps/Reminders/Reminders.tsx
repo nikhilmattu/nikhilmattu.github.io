@@ -12,7 +12,7 @@ const Reminders: React.FC<Props> = () => {
       const reminderIndex = index;
       return (
         <Reminder
-          key={index}
+          key={`${index.toString()}${item}`}
           item={item}
           remove={() => {
             const sanitizedList = reminderList.filter(
