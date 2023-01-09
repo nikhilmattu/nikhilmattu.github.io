@@ -1,5 +1,6 @@
 import React from "react";
 import Reminders from "../../Apps/Reminders/Reminders";
+import Search from "../../Apps/Search/Search";
 import Train from "../../Apps/Train/Train";
 
 type Props = {};
@@ -8,11 +9,13 @@ const APP_NAMES: Record<string, string> = {
   NONE: "NONE",
   TRAIN: "TRAIN",
   REMINDERS: "REMINDERS",
+  SEARCH: "SEARCH"
 };
 
 const APPS: Record<string, string> = {
   TRAIN: "Where is the train?",
   REMINDERS: "Reminders",
+  SEARCH: "Looking for something?"
 };
 
 const AppsPage: React.FC<Props> = () => {
@@ -24,6 +27,8 @@ const AppsPage: React.FC<Props> = () => {
         return <Train />;
       case APP_NAMES.REMINDERS:
         return <Reminders />;
+      case APP_NAMES.SEARCH:
+        return <Search />
     }
   };
 
