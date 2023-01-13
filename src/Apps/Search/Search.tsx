@@ -7,58 +7,89 @@ type Props = {};
 const crypto = ["bitcoin", "litecoin", "dogecoin", "ethereum"];
 const currency = ["dollars", "euros", "pesos", "rupees", "aud"];
 
-const delayedResponse = (() => {
+const api = (() => {
   let counter = 0;
-  let current: NodeJS.Timeout | null = null;
+  let currentTimeout: NodeJS.Timeout | null = null;
+  let currentInterval: NodeJS.Timeout | null = null;
 
-  function getNext(cb: (output: string[]) => void) {
-    if (current) {
-      clearTimeout(current);
+  const clear = () => {
+    if (currentTimeout) {
+      clearTimeout(currentTimeout);
     }
-    current = setTimeout(() => {
+    if (currentInterval) {
+      clearInterval(currentInterval);
+    }
+  };
+
+  function getNext(cb: (output: string[]) => void, time: number) {
+    clear();
+    currentTimeout = setTimeout(() => {
       if (counter % 2 === 0) {
-        counter++;
         cb([...crypto]);
       } else {
-        counter++;
         cb([...currency]);
       }
-    }, 3000);
+      counter++;
+    }, time);
   }
 
-  function getCounter() {
-    return counter;
+  function repeatGetNext(cb: (output: string[]) => void, time: number) {
+    clear();
+    currentInterval = setInterval(() => {
+      if (counter % 2 === 0) {
+        cb([...crypto]);
+      } else {
+        cb([...currency]);
+      }
+      counter++;
+    }, time);
   }
 
   return {
-    getCounter,
+    repeatGetNext,
     getNext,
   };
 })();
 
 const Search: React.FC<Props> = () => {
   const [searchTerm, setSearchTerm] = React.useState("");
-  const [searching, setSearching] = React.useState<NodeJS.Timeout>();
+  const [searchTimeout, setSearchTimeout] = React.useState<NodeJS.Timeout>();
   const [searchResponse, setSearchResponse] = React.useState<string[]>([]);
+  const [repeatCalls, setRepeatCalls] = React.useState(false);
 
   const updateSearch = (value: string) => {
-    if (searching) {
-      clearTimeout(searching);
+    if (searchTimeout) {
+      clearTimeout(searchTimeout);
     }
 
-    const search = setTimeout(() => {
+    const s = setTimeout(() => {
+      // can be a function that searches and does something more
       setSearchTerm(value);
     }, 500);
 
-    setSearching(search);
+    setSearchTimeout(s);
   };
 
   useEffect(() => {
-    delayedResponse.getNext(setSearchResponse);
-  }, [searchTerm]);
+    // initial state should not fetch calls
+    if (!searchTerm) {
+      return;
+    }
+
+    if (repeatCalls) {
+      api.repeatGetNext(setSearchResponse, 2000);
+    } else {
+      api.getNext(setSearchResponse, 1000);
+    }
+  }, [searchTerm, repeatCalls]);
+
+  const toggleRepeat = () => {
+    setRepeatCalls(true);
+  };
 
   return (
     <div>
+      <button onClick={() => toggleRepeat()}>repeat fetching</button>
       <SearchInput onSearch={(value) => updateSearch(value)} />
       <SearchResponses responses={searchResponse} />
     </div>

@@ -13,7 +13,11 @@ const SearchInput: React.FC<Props> = ({ onSearch }) => {
         type="text"
         value={searchTerm}
         onChange={(e) => {
+          // triggers rerender of component
           setSearchTerm(e.target.value);
+          // debugger
+          // does not run until after rerender is done
+          // but will reference previous search term instead of new value
           onSearch(e.target.value);
         }}
       />
