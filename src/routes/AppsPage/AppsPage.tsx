@@ -9,13 +9,13 @@ const APP_NAMES: Record<string, string> = {
   NONE: "NONE",
   TRAIN: "TRAIN",
   REMINDERS: "REMINDERS",
-  SEARCH: "SEARCH"
+  SEARCH: "SEARCH",
 };
 
 const APPS: Record<string, string> = {
   TRAIN: "Where is the train?",
   REMINDERS: "Reminders",
-  SEARCH: "Looking for something?"
+  SEARCH: "Looking for something?",
 };
 
 const AppsPage: React.FC<Props> = () => {
@@ -28,15 +28,18 @@ const AppsPage: React.FC<Props> = () => {
       case APP_NAMES.REMINDERS:
         return <Reminders />;
       case APP_NAMES.SEARCH:
-        return <Search />
+        return <Search />;
     }
   };
 
   const appOptions =
     currentApp === APP_NAMES.NONE ? (
-      Object.keys(APPS).map((name) => {
+      Object.keys(APPS).map((name, index) => {
         return (
-          <button onClick={() => setCurrentApp(APP_NAMES[name])}>
+          <button
+            key={`${name}_${index}`}
+            onClick={() => setCurrentApp(APP_NAMES[name])}
+          >
             {APPS[name]}
           </button>
         );

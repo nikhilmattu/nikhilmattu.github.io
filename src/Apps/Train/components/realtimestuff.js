@@ -1,16 +1,5 @@
 import GtfsRealtimeBindings from "gtfs-realtime-bindings";
 
-// export const decoder = (body) => {
-//   var feed = GtfsRealtimeBindings.transit_realtime.FeedMessage.decode(body);
-//   feed.entity.forEach(function (entity) {
-//     if (entity.trip_update) {
-//       console.log(entity.trip_update);
-//     }
-//   });
-// };
-
-
-// import fetch from "node-fetch";
 export const decoder = async () => {
   try {
     const response = await fetch("https://api-endpoint.mta.info/Dataservice/mtagtfsfeeds/nyct%2Fgtfs-ace", {
