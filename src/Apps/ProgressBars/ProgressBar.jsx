@@ -3,9 +3,9 @@ import React, { useEffect, useRef } from "react";
 const UPDATE_FREQUENCY = 1000;
 
 const ProgressBar = ({ shouldStart, onComplete }) => {
-  const [currentProgress, setCurrentProgress] = React.useState("0");
+  const [currentProgress, setCurrentProgress] = React.useState(0);
   const totalTimeInMS = useRef((Math.random() * 2 + 3) * 1000);
-  const currProgRef = useRef(currentProgress);
+  const currProgRef = useRef(currentProgress.toString());
 
   useEffect(() => {
     // alternate method
@@ -30,11 +30,11 @@ const ProgressBar = ({ shouldStart, onComplete }) => {
       const i = setInterval(() => {
         const newProgress = Math.min(
           Math.ceil(
-            parseInt(currProgRef.current, 10) +
-              (UPDATE_FREQUENCY / totalTimeInMS) * 100
+            currProgRef.current +
+              (UPDATE_FREQUENCY / totalTimeInMS.current) * 100
           ),
           100
-        ).toString();
+        );
 
         if (newProgress >= 100) {
           clearInterval(i);

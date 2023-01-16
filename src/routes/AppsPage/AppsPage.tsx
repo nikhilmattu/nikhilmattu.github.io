@@ -1,5 +1,6 @@
 import React from "react";
 import Playground from "../../Apps/Playground/Playground";
+import ProgressBars from "../../Apps/ProgressBars/ProgressBars";
 import Reminders from "../../Apps/Reminders/Reminders";
 import Search from "../../Apps/Search/Search";
 import Train from "../../Apps/Train/Train";
@@ -11,6 +12,7 @@ const APP_NAMES: Record<string, string> = {
   TRAIN: "TRAIN",
   REMINDERS: "REMINDERS",
   SEARCH: "SEARCH",
+  PROGRESS: "PROGRESS",
   PLAYGROUND: "PLAYGROUND",
 };
 
@@ -18,7 +20,8 @@ const APPS: Record<string, string> = {
   TRAIN: "Where is the train?",
   REMINDERS: "Reminders",
   SEARCH: "Looking for something?",
-  PLAYGROUND: 'Playground'
+  PLAYGROUND: 'Playground',
+  PROGRESS: 'Progress Bars'
 };
 
 const AppsPage: React.FC<Props> = () => {
@@ -32,6 +35,8 @@ const AppsPage: React.FC<Props> = () => {
         return <Reminders />;
       case APP_NAMES.SEARCH:
         return <Search />;
+      case APP_NAMES.PROGRESS:
+        return <ProgressBars />
       default:
         return <Playground />
     }
