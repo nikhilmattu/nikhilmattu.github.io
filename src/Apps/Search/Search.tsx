@@ -1,3 +1,4 @@
+import { request } from "http";
 import React, { useEffect } from "react";
 import SearchInput from "./components/SearchInput";
 import SearchResponses from "./components/SearchResponses";
@@ -50,6 +51,60 @@ const api = (() => {
     getNext,
   };
 })();
+
+// write a function that returns
+// debounce waits a certain amount of time and then calls fn
+// first time a function is called, should make the call
+// after first call debounce function
+
+// const customDebounce = (fn: () => any, waitTime: number) => {
+//   let calledOnce = false;
+//   let timeout: null | NodeJS.Timeout;
+  
+//   return (...args: []) => {
+//     if(calledOnce) {
+//       timeout && clearTimeout(timeout)
+//       timeout = setTimeout(() => {
+//         return fn.apply(this, args)
+//       }, waitTime)
+//     } else {
+//       calledOnce = true
+//       return fn.apply(this, args)
+//     }
+//   }
+// }
+
+const throttle = function (fn: Function, waitTime: number) {
+  let isWaiting = false;
+  
+  return function(this: any) {
+    if(!isWaiting) {
+      isWaiting = true
+      setTimeout(() => {
+        isWaiting = false
+      }, waitTime)
+      return fn.apply(this, arguments)
+      // inside then, update the wait condition, maybe no need for wait time
+    }
+  }
+}
+
+// write a function called call if not pending
+// fn takes input asyncFn which is async fn
+// callifnotpendingfn outputs a function that will call the inputted asyncfn only if the last call has completed
+const callIfNotPending = (asyncFn: () => any) => {
+  let lastCallCompleted = true;
+  return async (...args: []) => {
+    if (lastCallCompleted) {
+      lastCallCompleted = false;
+      return asyncFn.apply(this, args).then((res: any) => {
+        lastCallCompleted = true;
+        return res
+      });
+    }
+  };
+};
+callIfNotPending(async () => {});
 
 const Search: React.FC<Props> = () => {
   const [searchTerm, setSearchTerm] = React.useState("");

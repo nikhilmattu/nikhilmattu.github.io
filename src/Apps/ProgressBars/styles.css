@@ -1,0 +1,27 @@
+.Playground {
+  font-family: sans-serif;
+  text-align: center;
+}
+
+.ProgressBar {
+  height: 20px;
+  width: 500px;
+  background: gray;
+}
+
+.CurrentProgress {
+  background: red;
+  height: 20px;
+}
+
+.pbBackground {
+  height: 20px;
+  width: 500px;
+  background: gray;
+}
+
+.pbForeground {
+  height: 20px;
+  width: 0;
+  background: red;
+}
