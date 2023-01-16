@@ -19,7 +19,7 @@ type Station = {
 const Train: React.FC<Props> = () => {
   const [userLocation, setUserLocation] =
     React.useState<GeolocationCoordinates>();
-  const [stationsList, setStationsList] = React.useState<Station[]>();
+  const [stationsList, setStationsList] = React.useState<Station[]>([]);
   const [numVisibleStations, setNumVisibleStations] = React.useState<number>(5);
   const [selectedStation, setSelectedStation] = React.useState("");
 
@@ -82,7 +82,7 @@ const Train: React.FC<Props> = () => {
   return (
     <div>
       <div>Where is the closest train?</div>
-      <button
+      {stationsList.length > 0 && <button
         onClick={() => {
           // make sure we don't go past the max num of stations
           // slice should handle this fine though
@@ -90,11 +90,12 @@ const Train: React.FC<Props> = () => {
         }}
       >
         Show more trains
-      </button>
+      </button>}
       <TrainWrapper>
         <StationsListWrapper>{stationElements()}</StationsListWrapper>
         {/* <StationInfo id={selectedStation} /> */}
       </TrainWrapper>
+      {stationsList?.length === 0 && <div>Loading...</div>}
     </div>
   );
 };
